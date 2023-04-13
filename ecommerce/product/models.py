@@ -12,7 +12,6 @@ class Category(MPTTModel):
     class MPTTMeta:
         order_insertion_by = ["name"]
 
-
     def __str__(self) -> str:
         return self.name
 
@@ -29,6 +28,9 @@ class Product(models.Model):
     description = models.TextField(blank=True)
     digital = models.BooleanField()
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
-    category = TreeForeignKey("Category",blank=True,null=True, on_delete=models.SET_NULL)
+    category = TreeForeignKey(
+        "Category", blank=True, null=True, on_delete=models.SET_NULL
+    )
+
     def __str__(self) -> str:
         return self.name
